@@ -1,27 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef struct SinhVien{
-    string maSV, ten, lop, ngaysinh;
+struct SinhVien {
+    string msv, name, dob, lop;
     float gpa;
-} sv;
+};
 
-void nhapThongTinSV(sv &x){
-    x.maSV = "N20DCCN001";
-
-    getline(cin, x.ten);
-    getline(cin, x.lop);
-    getline(cin, x.ngaysinh);
-    cin >> x.gpa;
-
-    if(x.ngaysinh[1] == '/') x.ngaysinh = "0" + x.ngaysinh;
-    if(x.ngaysinh[4] == '/') x.ngaysinh.insert(3, "0");
+void nhapThongTinSV(SinhVien &a) {
+    a.msv = "N20DCCN001";
+    getline(cin, a.name);
+    cin >> a.lop >> a.dob >> a.gpa;
+    if (a.dob[2] != '/') a.dob.insert(0, "0");
+    if (a.dob[5] != '/') a.dob.insert(3, "0");
 }
 
-void inThongTinSV(sv x){
-    cout << x.maSV << "\t" << x.ten << "\t" 
-         << x.lop << "\t" << x.ngaysinh << "\t" 
-         << fixed << setprecision(2) << x.gpa;
+void inThongTinSV(SinhVien a) {
+    cout << a.msv << " " << a.name << " " << a.lop << " " << a.dob << " ";
+    cout << fixed << setprecision(2) << a.gpa;
 }
 
 int main(){
