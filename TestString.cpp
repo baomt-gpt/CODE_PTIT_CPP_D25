@@ -1,31 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool cmp(pair<char, int> x, pair<char, int> y){
+    return x.second > y.second;
+}
+
 int main(){
-    int T;
-    cin >> T;
-    while(T--){
-        string s;
-        cin >> s;
-
-        int cnt[26] = {0};
-
-        for(char c : s){
-            c = tolower(c);
-            cnt[c - 'a']++;
+    int q; cin >> q;
+    while(q--){
+        string s; cin >> s;
+        for(char &x : s){
+            x = tolower(x);
         }
-
-        int mx = *max_element(cnt, cnt + 26);
-
-        for(int f = mx; f >= 1; f--){
-            for(int i = 0; i < 26; i++){
-                if(cnt[i] == f){
-                    for(int j = 0; j < f; j++){
-                        cout << char(i + 'a');
-                    }
-                }
+        map<char, int> mp;
+        for(char x : s){
+            mp[x]++;
+        }
+        vector<pair<char, int>> v;
+        for(auto it : mp){
+            v.push_back({it.first, it.second});
+        }
+        sort(v.begin(), v.end(), cmp);
+        for(auto x : v){
+            for(int i = 0; i < x.second; i++){
+                cout << x.first;
             }
         }
-        cout << endl;
+        cout << "\n";
     }
+
+    return 0;
 }

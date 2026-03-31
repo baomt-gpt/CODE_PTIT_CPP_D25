@@ -1,43 +1,39 @@
 #include <bits/stdc++.h>
-#define endl '\n'
 using namespace std;
 
-char num(char c) {
-    if (c >= 'A' && c <= 'C') return '2';
-    if (c >= 'D' && c <= 'F') return '3';
-    if (c >= 'G' && c <= 'I') return '4';
-    if (c >= 'J' && c <= 'L') return '5';
-    if (c >= 'M' && c <= 'O') return '6';
-    if (c >= 'P' && c <= 'S') return '7';
-    if (c >= 'T' && c <= 'V') return '8';
-    if (c >= 'W' && c <= 'Z') return '9';
+char Number(char x){
+    if(x >= 'A' && x <= 'C') return '2';
+    if(x >= 'D' && x <= 'F') return '3';
+    if(x >= 'G' && x <= 'I') return '4';
+    if(x >= 'J' && x <= 'L') return '5';
+    if(x >= 'M' && x <= 'O') return '6';
+    if(x >= 'P' && x <= 'S') return '7';
+    if(x >= 'T' && x <= 'V') return '8';
+    if(x >= 'W' && x <= 'Z') return '9';
 }
 
-void TestCase()
-{
-    string s;
-    cin >> s;
-    for(char &x : s){
-        x = toupper(x);
+int ThuanNghich(string s){
+    int n = s.length();
+    for(int i = 0; i < n; i++){
+        if(s[i] != s[n - i - 1]) return 0;
     }
-    string str = "";
-    for (auto x : s)
-        str.push_back(num(x));
+    return 1;
+}
 
-    int l = str.length();
-    for (int i = 0; i <= l / 2; ++i) {
-        if (str[i] != str[l - i - 1]) {
-            cout << "NO\n";
-            return;
+int main(){
+    int q; cin >> q;
+    while(q--){
+        string s; cin >> s;
+        for(char &x : s){
+            x = toupper(x);
         }
+        string res = "";
+        for(char x : s){
+            res += Number(x);
+        }
+        if(ThuanNghich(res)) cout << "YES\n";
+        else cout << "NO\n";
     }
-    cout << "YES\n";
-}
 
-int main()
-{
-    int T;
-    cin >> T;
-    while (T--) TestCase();
     return 0;
 }
