@@ -9,7 +9,6 @@ int LocPhat(string a){
     return 1;
 }
 
-
 int main(){
     int q;
     cin >> q;
